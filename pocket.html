@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/mnt/data/310d604e-e07b-4303-bea6-00209696d945.png" type="logo.png" />
+
+<title>Pocket Pay – Cashless School System</title>
+
+<style>
+/* -----------------------------------------------------
+   RESET + GLOBAL
+----------------------------------------------------- */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: "Inter", "Segoe UI", sans-serif;
+    background:#f6f7fb;
+    color:#1d1d1f;
+    line-height:1.65;
+}
+
+/* Purple glow */
+.card, .hero-card, .implementation-card, .contact-box,
+.step-box, .contact-container, .implementation-grid {
+    box-shadow:0 8px 25px rgba(122, 90, 248, 0.20);
+}
+
+/* -----------------------------------------------------
+   NAVIGATION
+----------------------------------------------------- */
+nav {
+    width:100%;
+    position:fixed;
+    top:15px;
+    z-index:200;
+    display:flex;
+    justify-content:center;
+}
+
+.nav-inner {
+    width:92%;
+    max-width:1200px;
+    background:white;
+    padding:12px 25px;
+    border-radius:15px;
+    box-shadow:0 6px 22px rgba(0,0,0,0.06);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.nav-inner img {
+    height:48px;
+}
+
+.nav-links a {
+    margin-left:22px;
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    transition:0.25s;
+}
+
+.nav-links a:hover { color:#7a5af8; }
+
+/* -----------------------------------------------------
+   HERO
+----------------------------------------------------- */
+.hero {
+    padding:150px 6% 80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.hero-text { max-width:520px; }
+
+.hero-title {
+    font-size:52px;
+    font-weight:900;
+    line-height:1.08;
+    margin-bottom:18px;
+}
+
+.hero-title span { color:#7a5af8; }
+
+.hero-sub {
+    font-size:18px;
+    margin-bottom:28px;
+    opacity:0.85;
+}
+
+.cta-primary {
+    display:inline-block;
+    background:#7a5af8;
+    color:white;
+    padding:12px 30px;
+    border-radius:12px;
+    font-size:17px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.cta-primary:hover {
+    background:#6040e6;
+}
+
+.hero-card {
+    background:white;
+    padding:30px;
+    width:300px;
+    border-radius:18px;
+    text-align:center;
+}
+
+.hero-card img {
+    width:100px;
+    margin-bottom:15px;
+}
+
+/* -----------------------------------------------------
+   SECTION TITLES
+----------------------------------------------------- */
+.section {
+    padding:80px 6%;
+}
+
+.section-title {
+    font-size:36px;
+    font-weight:900;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+/* -----------------------------------------------------
+   GRID / CARDS
+----------------------------------------------------- */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:22px;
+}
+
+.card {
+    background:white;
+    padding:28px;
+    border-radius:15px;
+    transition:0.25s;
+}
+
+.card:hover {
+    transform:translateY(-4px);
+}
+
+.card-icon {
+    background:#ece9ff;
+    color:#7a5af8;
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+/* -----------------------------------------------------
+   BANNERS
+----------------------------------------------------- */
+.photo-banner {
+    height:260px;
+    border-radius:18px;
+    margin:40px 6%;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 8px 25px rgba(122, 90, 248, 0.20);
+}
+
+.wristband-banner {
+    background-image:url('1.png');
+}
+
+/* -----------------------------------------------------
+   SECURITY SECTION (secure.png background)
+----------------------------------------------------- */
+.security-section {
+    padding:80px 6%;
+    background:url('secure.png');
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    
+}
+
+.security-section::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.50);
+    backdrop-filter: blur(2px);
+}
+
+.security-content {
+    position:relative;
+    z-index:3;
+}
+
+.security-image {
+    width:100%;
+    max-width:450px;
+    border-radius:18px;
+    margin:20px auto;
+    display:block;
+}
+
+/* -----------------------------------------------------
+   IMPLEMENTATION SECTION (restored)
+----------------------------------------------------- */
+.implementation-grid {
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.implementation-card {
+    width:300px;
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    border-top:5px solid #7a5af8;
+}
+
+.implementation-card h3 { font-size:22px; margin-bottom:10px; }
+.implementation-card h4 { font-size:19px; margin-bottom:12px; color:#555; }
+
+/* -----------------------------------------------------
+   CONTACT SECTION (restored)
+----------------------------------------------------- */
+.contact-container {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:60px;
+    flex-wrap:wrap;
+}
+
+.contact-text p { font-size:18px; margin-bottom:8px; }
+
+.contact-logo-img {
+    height:200px;
+    border-radius:18px;
+}
+
+.email-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 90px;
+    height: 50px;
+    background: #7a5af8; /* purple color */
+    border-radius: 12px; /* rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(122, 90, 248, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 2000;
+    border: 2px solid #5e3ddb; /* darker purple border */
+}
+
+.email-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 18px 40px rgba(122, 90, 248, 0.8);
+    background: #5e3ddb; /* slightly darker purple on hover */
+}
+
+
+.summary-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1100px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.summary-text {
+    flex: 1;
+    min-width: 300px;
+    font-size: 19px;
+    text-align: justify;
+}
+
+.summary-img {
+    flex: 1;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(122, 90, 248, 0.20);
+}
+
+.summary-img img {
+    width: 50%;
+    border-radius: 16px;
+}
+
+/* Mobile: stack vertically */
+@media(max-width: 768px) {
+    .summary-wrapper {
+        flex-direction: column;
+        text-align: center;
+       
+}
+ .summary-img img {
+    width: 80%;
+    border-radius: 16px;
+    }
+}
+
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
+
+.email-float:hover { transform:scale(1.1); }
+
+/* -----------------------------------------------------
+   FOOTER
+----------------------------------------------------- */
+footer {
+    background:#1a1a1a;
+    color:#ccc;
+    padding:35px;
+    text-align:center;
+    font-size:15px;
+    margin-top:60px;
+}
+
+/* -----------------------------------------------------
+   MOBILE
+----------------------------------------------------- */
+@media(max-width:768px) {
+    .hero { text-align:center; flex-direction:column; }
+    .hero-card { margin-top:25px; }
+    .contact-container { text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <img src="logo.png">
+        <div class="nav-links">
+            <a href="#summary">Summary</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#features">Features</a>
+            <a href="#security">Security</a>
+            <a href="#implementation">Implementation</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1 class="hero-title">Pocket Pay<br><span>Cashless School System</span></h1>
+        <p class="hero-sub">A clean, secure, modern payment experience for schools.</p>
+        <a href="mailto:sobola.org@gmail.com?subject=Pocket%20Pay%20Inquiry" class="cta-primary">Get Started</a>
+    </div>
+
+    <div class="hero-card">
+        <img src="logo.png">
+        <h3>Pocket Pay</h3>
+        <p style="font-size:24px;font-weight:700;"> <span style="font-size:16px;color:#777;">/mo</span></p>
+    </div>
+</section>
+
+<section class="section" id="summary">
+    <h2 class="section-title">Executive Summary</h2>
+
+    <div class="summary-wrapper">
+        
+        <div class="summary-text">
+            Pocket Pay is an innovative cashless payment system designed specifically for schools to manage student pocket money and canteen transactions. Our system offers a secure, efficient, and user-friendly platform that benefits students, parents, and school administrators. With Pocket Pay, schools can ensure a smooth, cashless environment that enhances student convenience and promotes financial literacy.
+        </div>
+
+        <div class="summary-img">
+            <img src="1.jpg" alt="Pocket Pay Wristband">
+        </div>
+
+    </div>
+</section>
+
+<section class="section" id="benefits">
+    <h2 class="section-title">Benefits</h2>
+    <div class="grid">
+        
+        <div class="card">
+            <div class="card-icon">★</div>
+            <h3>Streamlined Operations</h3>
+            <p>Reduces cash handling in school canteens.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">★</div>
+            <h3>Enhanced Security</h3>
+            <p>Minimizes risks of students carrying cash.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">★</div>
+            <h3>Parental Engagement</h3>
+            <p>Parents monitor spending and top up remotely.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">★</div>
+            <h3>Data-Driven Decisions</h3>
+            <p>Useful analytics for the school.</p>
+        </div>
+        
+    </div>
+</section>
+
+<section class="section" id="features">
+    <h2 class="section-title">Key Features</h2>
+    <div class="grid">
+        
+        <div class="card">
+            <div class="card-icon">⚙</div>
+            <h3>Cashless Transactions</h3>
+            <p>Students pay using a digital wallet.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">⚙</div>
+            <h3>Eliminates Cash Risks</h3>
+            <p>No theft or loss of money.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">⚙</div>
+            <h3>Parental Control</h3>
+            <p>Parents set limits and load funds.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">⚙</div>
+            <h3>Real-time Alerts</h3>
+            <p>Instant notifications.</p>
+        </div>
+        
+    </div>
+</section>
+
+<section id="security" class="security-section">
+    <div class="security-content">
+        <h2 class="section-title">System & Security</h2>
+
+        <div class="grid">
+            
+            <div class="card">
+                <h3>Secure and Efficient</h3>
+                <p>Advanced security protocols.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Reduces Admin Work</h3>
+                <p>Less manual cash handling.</p>
+            </div>
+            
+            <div class="card">
+                <h3>User-Friendly</h3>
+                <p>Simple and intuitive mobile app.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Admin Dashboard</h3>
+                <p>Centralized school management tools.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Financial Literacy</h3>
+                <p>Helps students understand and manage money responsibly.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Data Encryption</h3>
+                <p>All transactions and data are fully encrypted.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Role-Based Permissions</h3>
+                <p>Access controls tailored to specific staff roles.</p>
+            </div>
+            
+            <div class="card">
+                <h3>24/7 Monitoring</h3>
+                <p>Continuous system tracking for performance and threats.</p>
+            </div>
+            
+        </div>
+</section>
+
+<section id="implementation" style="background:#f9fafb;">
+    <h2 class="section-title">Implementation Plan</h2>
+    <div class="implementation-grid">
+        <div class="implementation-card">
+            <h3>STEP 1</h3>
+            <h4>Consultation and Customization</h4>
+            <p>Initial meetings with school representatives to understand specific needs and customize the system accordingly.</p>
+        </div>
+        <div class="implementation-card">
+            <h3>STEP 2</h3>
+            <h4>System Setup</h4>
+            <p>Installation of the Pocket Pay system, including necessary hardware and software. We shall also conduct training sessions for school staff and administrators.</p>
+        </div>
+        <div class="implementation-card">
+            <h3>STEP 3</h3>
+            <h4>Launch and Support</h4>
+            <p>Launch event to introduce the system to students and parents. Ongoing technical support and customer service via phone call or physical visits.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" style="background:#f9fafb;">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-container">
+        <div class="contact-text">
+            <p><strong>Annet Owomugisha</strong></p>
+            <p><strong>Email:</strong> <a href="mailto:sobola.org@gmail.com">sobola.org@gmail.com</a></p>
+            <p><strong>Phone:</strong> +256 788170013</p>
+            <p>We’re here to help your school go cashless. Reach out today!</p>
+        </div>
+        <img src="logo.png" alt="Pocket Pay Logo" class="contact-logo-img">
+    </div>
+</section>
+
+<a href="mailto:sobola.org@gmail.com?subject=Pocket%20Pay%20Inquiry" class="email-float" title="Email Us">✉</a>
+
+<footer>
+    <p>&copy; 2025 Pocket Pay. </p>
+    <p>Email: sobola.org@gmail.com</p>
+    <p>
+        Pocket Pay represents a forward-thinking solution for modern schhols looking to adopt
+        cashless payment. By Implemeting this system, your school can enhance security, improve operational efficiency, and contibute to the financial
+        education of their students. we are confident that  PocketPay will be a valuable addition to your school's infrastructure, making everyday transactions seemless and secure.
+    </p>
+</footer>
+
+</body>
+
+</html>
